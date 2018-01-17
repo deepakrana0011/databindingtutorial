@@ -1,15 +1,13 @@
 package com.example.abc.databinding;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.abc.databinding.databinding.ActivityMainBinding;
-import com.example.abc.databinding.model.User;
-import com.jakewharton.rxbinding.view.RxView;
+import com.example.abc.databinding.viewmodel.LoginViewModel;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 /**
  * Created by ABC on 1/15/2018.
@@ -23,12 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        buttonClick();
+        binding.setUser(new LoginViewModel());
     }
 
-    public void buttonClick() {
-        RxView.clicks(binding.buttonLogin).subscribe(aVoid -> {
-            Toast.makeText(MainActivity.this, "RxView.clicks", Toast.LENGTH_SHORT).show();
-        });
-    }
 }
